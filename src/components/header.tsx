@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className="bg-white shadow-sm text-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24"> {/* Changed h-16 to h-24 */}
+        <div className="flex justify-between items-center h-16"> {/* Changed from h-24 to h-16 */}
           <div className="flex items-center">
             <img src="/images/logo.jpg" alt="KingAmbrosi Logo" className="h-12 w-12 rounded-full object-cover mr-3" /> {/* Slightly increased logo size */}
             <span className="font-bold text-2xl text-black">KingAmbrosi</span> {/* Increased text size */}
