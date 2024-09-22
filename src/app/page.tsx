@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-900 font-[family-name:var(--font-geist-sans)]">
       <Header />
-      <div className="-mt-16">
+      <div className='mt-10'>
         <ContainerScroll
           titleComponent={
             <div className="text-center relative top-10 text-white">
