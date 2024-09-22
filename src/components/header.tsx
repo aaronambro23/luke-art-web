@@ -15,7 +15,7 @@ const Header = () => {
             <ul className="flex space-x-8 text-white">
               <li><Link href="/about" className="text-lg">About</Link></li>
               <li><Link href="/gallery" className="text-lg">Gallery</Link></li>
-              <li><Link href="/artist-statement" className="text-lg">Artist's Statement</Link></li>
+              <li><Link href="/artist-statement" className="text-lg">Artistic Vision</Link></li>
               <li><Link href="/contact" className="text-lg">Contact</Link></li>
             </ul>
           </nav>
