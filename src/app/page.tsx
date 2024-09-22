@@ -11,7 +11,7 @@ export default function Home() {
         <ContainerScroll
           titleComponent={
             <div className="text-center relative top-10 text-white">
-              <h2 className="text-3xl font-normal mb-2">Exploring the Boundaries of</h2>
+              <h2 className="text-3xl font-normal mb-2">Defining the Boundaries of</h2>
               <h1 className="text-7xl font-bold mb-4">
                 Colour &
                 <br />
