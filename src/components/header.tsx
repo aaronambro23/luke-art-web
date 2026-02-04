@@ -1,11 +1,20 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ShoppingCart, Instagram } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { useCart } from '@/contexts/CartContext';
 
 const Header = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const { count, registerCartIconRef, bounceTrigger } = useCart();
+  const cartRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    registerCartIconRef(cartRef.current);
+    return () => registerCartIconRef(null);
+  }, [registerCartIconRef]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,10 +53,14 @@ const Header = () => {
         }}
       ></div>
       <div className="h-full flex items-center justify-between px-6 relative z-10">
-        <div className="absolute left-6 transition-all duration-500 flex items-center" style={{ transform: `translateX(${logoPosition}px)` }}>
+        <Link
+          href="/"
+          className="absolute left-6 transition-all duration-500 flex items-center hover:opacity-90"
+          style={{ transform: `translateX(${logoPosition}px)` }}
+        >
           <img 
             src="/images/logo.jpg" 
-            alt="KingAmbrosi Logo" 
+            alt="King Ambrosi" 
             className="rounded-full object-cover w-12 h-12 mr-3"
           />
           <span 
@@ -56,7 +69,7 @@ const Header = () => {
           >
             KingAmbrosi
           </span>
-        </div>
+        </Link>
         <nav className="flex-grow flex justify-center">
           <ul className="flex space-x-6 text-white">
             <li><Link href="/about" className="text-lg hover:text-gray-300">About</Link></li>
@@ -66,7 +79,25 @@ const Header = () => {
           </ul>
         </nav>
         <div className="absolute right-6 flex items-center space-x-4 transition-all duration-300" style={{ transform: `translateX(${iconsPosition}px)` }}>
-          <ShoppingCart size={24} className="hover:text-gray-300 cursor-pointer" />
+          <Link
+            ref={cartRef}
+            href="/cart"
+            className="relative p-1 hover:text-gray-300 transition-colors"
+            aria-label={`Cart, ${count} items`}
+          >
+            <ShoppingCart size={24} className="cursor-pointer" />
+            {count > 0 && (
+              <motion.span
+                key={bounceTrigger}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 15 }}
+                className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] rounded-full bg-white text-black text-xs font-bold flex items-center justify-center px-1"
+              >
+                {count > 99 ? '99+' : count}
+              </motion.span>
+            )}
+          </Link>
           <Instagram size={24} className="hover:text-gray-300 cursor-pointer" />
         </div>
       </div>

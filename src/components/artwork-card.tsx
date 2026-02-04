@@ -1,17 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Image from 'next/image';
 import { Lens } from './Lens';
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-
-interface Artwork {
-  id: number;
-  title: string;
-  description: string;
-  imagePath: string;
-}
+import type { Artwork } from "@/lib/artworks";
 
 interface ArtworkCardProps {
   artwork: Artwork;
@@ -37,6 +32,7 @@ export default function ArtworkCard({ artwork }: ArtworkCardProps) {
               fill
               style={{ objectFit: 'cover' }}
               className="rounded-2xl"
+              unoptimized
             />
           </div>
         </Lens>
@@ -53,10 +49,13 @@ export default function ArtworkCard({ artwork }: ArtworkCardProps) {
             {artwork.description}
           </p>
         </motion.div>
-        <div className="relative z-20 flex justify-end w-full mt-2">
-          <button className="bg-white text-black hover:bg-gray-100 font-bold py-2 px-4 rounded-full transition duration-300 mb-2 text-sm w-full max-w-[100px]">
+        <div className="relative z-30 flex justify-end w-full mt-2">
+          <Link
+            href={`/art/${artwork.slug}`}
+            className="block text-center bg-white text-black hover:bg-gray-100 font-bold py-2 px-4 rounded-full transition duration-300 mb-2 text-sm w-full max-w-[100px] cursor-pointer"
+          >
             Buy
-          </button>
+          </Link>
         </div>
       </div>
     </div>

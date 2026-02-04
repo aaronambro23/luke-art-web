@@ -1,6 +1,8 @@
 import Header from '../components/header';
 import { ContainerScroll } from '../components/ui/container-scroll-animation';
+import AboutSection from '../components/AboutSection';
 import GallerySection from '../components/GallerySection';
+import ContactSection from '../components/ContactSection';
 import Image from 'next/image';
 
 export default function Home() {
@@ -33,10 +35,10 @@ export default function Home() {
           </div>
         </ContainerScroll>
       </div>
-      
-      <GallerySection />
 
-      {/* ... other content ... */}
+      <AboutSection />
+      <GallerySection />
+      <ContactSection />
     </div>
   );
 }
